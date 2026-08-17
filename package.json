@@ -1,0 +1,13 @@
+{
+  "name": "lifelink",
+  "version": "1.0.0",
+  "description": "Blood Donation and Emergency Donor Finder",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "firebase-admin": "^13.5.0"
+  }
+}

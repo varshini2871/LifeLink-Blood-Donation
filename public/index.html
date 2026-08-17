@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LifeLink - Blood Donor Finder</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- LOGIN / REGISTER SCREEN -->
+
+<section id="authPage">
+
+    <div class="authBox">
+
+        <div class="authLogo">
+            ❤️ LifeLink
+        </div>
+
+        <h1 id="authTitle">Login</h1>
+
+        <p id="authSubtitle">
+            Login to access LifeLink
+        </p>
+
+
+        <!-- REGISTER ONLY -->
+
+        <div id="usernameBox" class="hidden">
+
+            <label>Username</label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+            >
+
+        </div>
+
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="authEmail"
+            placeholder="Enter email"
+        >
+
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="authPassword"
+            placeholder="Enter password"
+        >
+
+
+        <button
+            class="primary authButton"
+            id="authButton"
+        >
+            Login
+        </button>
+
+
+        <p id="authMessage" class="message"></p>
+
+
+        <p class="authSwitch">
+
+            <span id="switchText">
+                Don't have an account?
+            </span>
+
+            <button
+                id="switchAuth"
+                type="button"
+            >
+                Register
+            </button>
+
+        </p>
+
+    </div>
+
+</section>
+
+<header>
+    <div class="logo" id="homeLogo">
+    ❤️ LifeLink
+</div>
+
+    <button id="menuBtn">☰</button>
+
+    <nav id="nav">
+        <button data-page="dashboard">Dashboard</button>
+        <button data-page="donors">Find Donors</button>
+        <button data-page="register">Register Donor</button>
+        <button data-page="requests">Requests</button>
+        <button data-page="createRequest">Create Request</button>
+        <button id="logoutBtn">Logout</button>
+    
+
+    </nav>
+</header>
+
+
+<main>
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="page active">
+
+    <div class="hero">
+
+        <div>
+            <p class="tag">EMERGENCY BLOOD SUPPORT</p>
+
+            <h1>
+                Find a blood donor when every minute matters.
+            </h1>
+
+            <p>
+                Register donors, search available donors and manage
+                emergency blood requests from one simple system.
+            </p>
+
+            <button class="primary" data-page="donors">
+                Find a Donor
+            </button>
+
+            <button class="secondary" data-page="createRequest">
+                Create Request
+            </button>
+        </div>
+
+        <div class="heart">
+            ❤️
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div>
+            <p>Total Donors</p>
+            <h2 id="totalDonors">0</h2>
+        </div>
+
+        <div>
+            <p>Available Donors</p>
+            <h2 id="availableDonors">0</h2>
+        </div>
+
+        <div>
+            <p>Active Requests</p>
+            <h2 id="activeRequests">0</h2>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DONOR LIST -->
+
+<section id="donors" class="page">
+
+    <h2>Find Blood Donors</h2>
+
+    <div class="filters">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search name or location"
+        >
+
+        <select id="bloodFilter">
+
+            <option value="">All Blood Groups</option>
+
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+
+        </select>
+
+        <select id="availabilityFilter">
+
+            <option value="">All Availability</option>
+            <option>Available</option>
+            <option>Unavailable</option>
+
+        </select>
+
+        <button class="primary" id="searchBtn">
+            Search
+        </button>
+
+    </div>
+
+    <div id="donorList" class="cards"></div>
+
+</section>
+
+
+<!-- REGISTER DONOR -->
+
+<section id="register" class="page">
+
+    <h2>Register as Blood Donor</h2>
+
+    <form id="donorForm">
+
+        <label>Name</label>
+        <input type="text" id="name" required>
+
+        <label>Blood Group</label>
+
+        <select id="bloodGroup" required>
+
+            <option value="">Select blood group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+
+        </select>
+
+        <label>Phone</label>
+        <input
+            type="tel"
+            id="phone"
+            maxlength="10"
+            required
+        >
+
+        <label>Email</label>
+        <input type="email" id="email">
+
+        <label>Location</label>
+        <input type="text" id="location" required>
+
+        <label>Availability</label>
+
+        <select id="availability" required>
+
+            <option value="">Select</option>
+            <option>Available</option>
+            <option>Unavailable</option>
+
+        </select>
+
+        <label>Last Donation Date</label>
+        <input type="date" id="lastDonationDate">
+
+        <label>Other Information</label>
+        <textarea id="notes"></textarea>
+
+        <button class="primary" type="submit">
+            Register Donor
+        </button>
+
+    </form>
+
+    <p id="donorMessage" class="message"></p>
+
+</section>
+
+
+<!-- EMERGENCY REQUESTS -->
+
+<section id="requests" class="page">
+
+    <h2>Emergency Blood Requests</h2>
+
+    <div class="filters">
+
+        <select id="requestBloodFilter">
+
+            <option value="">All Blood Groups</option>
+
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+
+        </select>
+
+        <select id="requestStatusFilter">
+
+            <option value="">All Status</option>
+            <option>Active</option>
+            <option>Fulfilled</option>
+            <option>Cancelled</option>
+
+        </select>
+
+        <button class="primary" id="requestSearchBtn">
+            Search
+        </button>
+
+    </div>
+
+    <div id="requestList"></div>
+
+</section>
+
+
+<!-- CREATE REQUEST -->
+
+<section id="createRequest" class="page">
+
+    <h2>Create Emergency Blood Request</h2>
+
+    <form id="requestForm">
+
+        <label>Patient Name</label>
+        <input type="text" id="patientName" required>
+
+        <label>Hospital</label>
+        <input type="text" id="hospital" required>
+
+        <label>Required Blood Group</label>
+
+        <select id="requestBloodGroup" required>
+
+            <option value="">Select blood group</option>
+
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+
+        </select>
+
+        <label>Required Quantity (units)</label>
+
+        <input
+            type="number"
+            id="quantity"
+            min="1"
+            max="20"
+            required
+        >
+
+        <label>Location</label>
+        <input type="text" id="requestLocation" required>
+
+        <label>Required Date</label>
+        <input type="date" id="requiredDate" required>
+
+        <label>Required Time</label>
+        <input type="time" id="requiredTime" required>
+
+        <label>Emergency Description</label>
+        <textarea id="description"></textarea>
+
+        <label>Contact Name</label>
+        <input type="text" id="contactName" required>
+
+        <label>Contact Phone</label>
+        <input
+            type="tel"
+            id="contactPhone"
+            maxlength="10"
+            required
+        >
+
+        <button class="primary" type="submit">
+            Create Emergency Request
+        </button>
+
+    </form>
+
+    <p id="requestMessage" class="message"></p>
+
+</section>
+
+</main>
+
+
+<div id="toast"></div>
+
+<script type="module">
+
+    // Firebase App
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+    // Firebase Authentication
+    import { getAuth }
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    // Firebase Firestore
+    import { getFirestore }
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    // Your Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAeCDAliIO1D_qNatAE_ZPWZmLAt77uWXs",
+        authDomain: "lifelink-65fcc.firebaseapp.com",
+        projectId: "lifelink-65fcc",
+        storageBucket: "lifelink-65fcc.firebasestorage.app",
+        messagingSenderId: "883445114756",
+        appId: "1:883445114756:web:4726adaae599c2a6061fd1",
+        measurementId: "G-78VQP5V1RY"
+    };
+
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+
+    // Initialize Authentication
+    const auth = getAuth(app);
+
+
+    // Initialize Firestore
+    const db = getFirestore(app);
+
+
+    // Make Firebase available to script.js
+    window.firebaseAuth = auth;
+    window.firebaseDB = db;
+
+</script>
+
+<script type="module" src="script.js"></script>
+
+
+
+
+</body>
+</html>
